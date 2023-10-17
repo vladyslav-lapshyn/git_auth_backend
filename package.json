@@ -1,12 +1,13 @@
 {
   "type": "module",
   "scripts": {
+    "migrations-up": "npx sequelize db:migrate",
     "format": "prettier --write . --ignore-path .gitignore",
     "lint": "eslint --ext .ts --ignore-path .gitignore .",
     "build": "swc src -d dist",
     "build-dev": "cross-env NODE_ENV=development npm run build && node --inspect dist/index.js",
-    "dev": "nodemon --ext ts --exec \"npm run build-dev\"",
-    "start": "npm run build && cross-env NODE_ENV=production node dist/index.js"
+    "dev": "npm run migrations-up && nodemon --ext ts --exec \"npm run build-dev\"",
+    "start": "npm run migrations-up && npm run build && cross-env NODE_ENV=production node dist/index.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
