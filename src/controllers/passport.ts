@@ -15,19 +15,18 @@ passport.use(new GitHubStrategy({
   callbackURL: process.env.GITHUB_CALLBACK_URL!,
 },
 async (accessToken, refreshToken, profile, cb) => {
-  const user = await User.findOrCreate({
+  const user = await User.findOne({
     where: { githubId: profile.id, },
-    defaults: { userName: profile.username },
   });
 
   if (!user) {
     console.log('Adding new github user to DB');
-    const user = new User({
+    const newUser = new User({
       githubId: profile.id,
       userName: profile.username,
     });
 
-    await user.save();
+    await newUser.save();
 
     return cb(null, profile);
   } else {
@@ -50,20 +49,20 @@ gitRouter.get(
 
 
 passport.serializeUser(function (user, done) {
-  done(null, user.id); // Серіалізувати користувача, зберігаючи його ID у сесії
+  done(null, user.id);
 });
 
 passport.deserializeUser(function (id, done) {
   User.findByPk(id)
     .then((user) => {
       if (!user) {
-        done(null, false); // Користувач не знайдений
+        done(null, false);
       } else {
-        done(null, user); // Десеріалізувати користувача
+        done(null, user);
       }
     })
     .catch((err) => {
-      done(err, false); // Помилка під час пошуку користувача
+      done(err, false);
     });
 });
 
