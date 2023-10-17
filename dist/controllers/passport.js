@@ -32,7 +32,6 @@ passport.use(new GitHubStrategy({
         return cb(null, profile);
     }
 }));
-// http://localhost:5555/auth/github/callback
 gitRouter.get("/", passport.authenticate("github", {
     scope: [
         "user:email"
@@ -41,7 +40,19 @@ gitRouter.get("/", passport.authenticate("github", {
 gitRouter.get("/callback", passport.authenticate("github", {
     failureRedirect: "/auth/github/error"
 }), function(req, res) {
-    res.redirect("/auth/github/success");
-}); // gitRouter.get('/success', async (req, res) => {
- //   const userInfo
- // })
+    res.redirect("https://git-auth-frontend.vercel.app/workspace");
+});
+passport.serializeUser(function(user, done) {
+    done(null, user.id); // Серіалізувати користувача, зберігаючи його ID у сесії
+});
+passport.deserializeUser(function(id, done) {
+    User.findByPk(id).then((user)=>{
+        if (!user) {
+            done(null, false); // Користувач не знайдений
+        } else {
+            done(null, user); // Десеріалізувати користувача
+        }
+    }).catch((err)=>{
+        done(err, false); // Помилка під час пошуку користувача
+    });
+});
