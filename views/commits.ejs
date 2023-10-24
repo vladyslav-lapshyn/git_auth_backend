@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commits</title>
+    <link rel="stylesheet" href="/css/main.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="title">
+        Current repository <%= repo %> - <%= branch %>
+      </h1>
+
+      <div class="section">
+        <h2 class="subtitle">Commits list</h2>
+        <ul class="scrollable-list is-list">
+          <% for (const commit of commits) { %>
+            <li class="has-background-light">
+              <a 
+                class="is-size-6 has-text-link" 
+                href="<%= commit.html_url %>" 
+                target="_blank"
+              >
+                <%= commit.commit.author.name %> - <%= commit.commit.message %>
+              </a>
+            </li>
+          <% } %>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2 class="subtitle">Pushes list</h2>
+        <ul class="scrollable-list is-list">
+          <% for (const push of pushes) { %>
+            <li class="has-background-light is-size-6">
+              <%= push.actor.display_login %> - <%= push.id %>
+            </li>
+          <% } %>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>

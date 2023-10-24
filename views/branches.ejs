@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Branches</title>
+    <link rel="stylesheet" href="/css/main.css">
+  </head>
+  <body>
+    <div class="container">
+      <h2 class="title">
+        Current repository <%= repo %>
+      </h2>
+
+      <div class="section">
+        <h2 class="subtitle">Branches list</h2>
+        <ul class="scrollable-list is-list">
+          <% for (const branch of branches) { %>
+            <li class="has-background-light">
+              <a
+                class="is-size-6 has-text-link" 
+                href="/profile/commits?repo=<%= repo %>&branch=<%= branch.name %>"
+              >
+                <%= branch.name %>
+              </a>
+            </li>
+          <% } %>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>

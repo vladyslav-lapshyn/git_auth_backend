@@ -1,0 +1,19 @@
+@import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
+
+.auth-page {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scrollable-list {
+  display: block;
+  max-height: 350px;
+  width: auto;
+  margin-bottom: 30px;
+
+  border: 1px solid #000;
+
+  overflow-y: auto;
+}

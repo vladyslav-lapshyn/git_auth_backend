@@ -3,7 +3,6 @@
 import dotenv from 'dotenv';
 import { createServer } from './server.js';
 
-
 dotenv.config();
 
 const PORT = process.env.PORT || 5000;

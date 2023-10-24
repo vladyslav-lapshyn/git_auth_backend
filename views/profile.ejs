@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Repositories</title>
+    <link rel="stylesheet" href="/css/main.css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="section">
+        <div class="profile-info">
+          <p>
+            <strong>GitHub_Id</strong>: <%= user.id %><br />
+            <strong>GitHub_Name</strong>: <%= user.displayName %><br />
+          </p>
+        </div>
+
+        <a
+          class="button is-link"
+          href="/auth/github/signout"
+        >Sign Out
+        </a>
+      </div>
+
+      <div class="section">
+        <h2 class="subtitle">
+          Repositories
+        </h2>
+  
+        <ul class="scrollable-list is-list">
+          <% for (const repo of user.repositories) { %>
+            <li class="has-background-light">
+              <a
+                class="is-size-5 has-text-link"
+                href="/profile/branches?repo=<%= repo.full_name %>"
+              >
+                <%= repo.name %>
+              </a>
+            </li>
+          <% } %>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
