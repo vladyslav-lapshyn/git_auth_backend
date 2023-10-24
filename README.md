@@ -14,9 +14,10 @@ GitHub Demo App is a simple web application that allows users to register and lo
 1. Clone this repository to your local machine.
 2. Install dependencies using `npm install`.
 3. Create a `.env` file in the project root and provide your GitHub OAuth credentials:
-GITHUB_CLIENT_ID=YOUR_CLIENT_ID
-GITHUB_SECRET_KEY=YOUR_SECRET_KEY
-GITHUB_CALLBACK_URL=YOUR_CALLBACK_URL
+
+- GITHUB_CLIENT_ID=YOUR_CLIENT_ID
+- GITHUB_SECRET_KEY=YOUR_SECRET_KEY
+- GITHUB_CALLBACK_URL=YOUR_CALLBACK_URL
 
 4. Start the app using `npm start`.
 
@@ -30,9 +31,10 @@ GITHUB_CALLBACK_URL=YOUR_CALLBACK_URL
 
 This project uses the following technologies and libraries:
 
-- Node.js
-- Express.js
+- Node
+- Express
 - Passport.js
+- Sequelize
 - GitHub OAuth
 - Axios
 - Other dependencies listed in the `package.json` file.
