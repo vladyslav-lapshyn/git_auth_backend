@@ -38,8 +38,3 @@ This project uses the following technologies and libraries:
 - GitHub OAuth
 - Axios
 - Other dependencies listed in the `package.json` file.
-
-## License
-
-This project is distributed under the MIT License. For detailed license information, refer to the `LICENSE` file.
-
